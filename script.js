@@ -1,7 +1,21 @@
 const productos = [
-  { nombre: "CARTUCHERA CREMALLERA", proveedor: "I. ADVENTISTA", puntos: 250, precio: 33660 },
-  { nombre: "CARTUCHERA FULL", proveedor: "OTRO PROVEEDOR", puntos: 300, precio: 89760 },
-  { nombre: "ESFEROS", proveedor: "I. ADVENTISTA", puntos: 50, precio: 2992 },
+  { nombre: "CARTUCHERA CREMALLERA", proveedor: "I. Adventista", puntos: 250, precio: 33660 },
+  { nombre: "CARTUCHERA FULL", proveedor: "I. Adventista", puntos: 400, precio: 89760 },
+  { nombre: "ESFEROS", proveedor: "VACIO", puntos: 0, precio: 2992 },
+  { nombre: "CUADERNOS NUEVOS", proveedor: "VACIO", puntos: 0, precio: 8602 },
+  { nombre: "CAJA DE COLORES", proveedor: "VACIO", puntos: 0, precio: 52360 },
+  { nombre: "CAJA DE COLORES", proveedor: "VACIO", puntos: 0, precio: 44880 },
+  { nombre: "LAPICES", proveedor: "VACIO", puntos: 0, precio: 4114 },
+  { nombre: "TAJA LAPIZ SENCILLO", proveedor: "VACIO", puntos: 0, precio: 1870 },
+  { nombre: "BORRADOR SENCILLO", proveedor: "VACIO", puntos: 0, precio: 2618 },
+  { nombre: "CORRECTOR", proveedor: "VACIO", puntos: 0, precio: 7480 },
+  { nombre: "RESALTADOR", proveedor: "VACIO", puntos: 0, precio: 7480 },
+  { nombre: "MARCADOR", proveedor: "VACIO", puntos: 0, precio: 7480 },
+  { nombre: "TAJA LAPIZ DOBLE", proveedor: "VACIO", puntos: 0, precio: 7480 },
+  { nombre: "TAJA BORRADOR", proveedor: "VACIO", puntos: 0, precio: 14960 },
+  { nombre: "TIJERAS", proveedor: "VACIO", puntos: 0, precio: 7480 }
+];
+
   // Puedes agregar el resto con su proveedor y puntos reales...
 ];
 
