@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda Simulada</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Tienda Escolar 📚</h1>
+  
+  <div id="productos-container">
+    <h2>Productos</h2>
+    <ul id="lista-productos"></ul>
+  </div>
+
+  <div id="carrito-container">
+    <button id="toggle-carrito">Mostrar/ocultar carrito 🛒</button>
+    
+    <div id="carrito-content" class="oculto">
+      <h2>🛒 Carrito</h2>
+      <div class="scrollable">
+        <ul id="lista-carrito"></ul>
+      </div>
+      <h3>Total: $<span id="total">0</span></h3>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
