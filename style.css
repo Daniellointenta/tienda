@@ -63,3 +63,14 @@ button:hover {
 .carrito-item button:hover {
   background-color: #c82333;
 }
+/* Después del resto del CSS existente... */
+
+#carrito-container ul {
+  margin-bottom: 10px;
+}
+
+#carrito-container h4 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #555;
+}
