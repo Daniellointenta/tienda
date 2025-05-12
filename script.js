@@ -1,19 +1,8 @@
 const productos = [
-  { nombre: "CARTUCHERA CREMALLERA", precio: 33660 },
-  { nombre: "CARTUCHERA FULL", precio: 89760 },
-  { nombre: "ESFEROS", precio: 2992 },
-  { nombre: "CUADERNOS NUEVOS", precio: 8602 },
-  { nombre: "CAJA DE COLORES 1", precio: 52360 },
-  { nombre: "CAJA DE COLORES 2", precio: 44880 },
-  { nombre: "LAPICES", precio: 4114 },
-  { nombre: "TAJA LAPIZ SENCILLO", precio: 1870 },
-  { nombre: "BORRADOR SENCILLO", precio: 2618 },
-  { nombre: "CORRECTOR", precio: 7480 },
-  { nombre: "RESALTADOR", precio: 7480 },
-  { nombre: "MARCADOR", precio: 7480 },
-  { nombre: "TAJA LAPIZ DOBLE", precio: 7480 },
-  { nombre: "TAJA BORRADOR", precio: 14960 },
-  { nombre: "TIJERAS", precio: 7480 }
+  { nombre: "CARTUCHERA CREMALLERA", proveedor: "I. ADVENTISTA", puntos: 250, precio: 33660 },
+  { nombre: "CARTUCHERA FULL", proveedor: "OTRO PROVEEDOR", puntos: 300, precio: 89760 },
+  { nombre: "ESFEROS", proveedor: "I. ADVENTISTA", puntos: 50, precio: 2992 },
+  // Puedes agregar el resto con su proveedor y puntos reales...
 ];
 
 const listaProductos = document.getElementById("lista-productos");
@@ -21,13 +10,15 @@ const listaCarrito = document.getElementById("lista-carrito");
 const totalSpan = document.getElementById("total");
 const toggleBtn = document.getElementById("toggle-carrito");
 const carritoContent = document.getElementById("carrito-content");
+const puntosContainer = document.createElement("div");
 
 let total = 0;
+let puntosPorProveedor = {}; // ejemplo: { "I. ADVENTISTA": 250 }
 
 productos.forEach((producto, index) => {
   const li = document.createElement("li");
   li.innerHTML = `
-    ${producto.nombre} - $${producto.precio.toLocaleString()}
+    ${producto.nombre} - ${producto.proveedor} - $${producto.precio.toLocaleString()}
     <button onclick="agregarAlCarrito(${index})">+</button>
   `;
   listaProductos.appendChild(li);
@@ -40,7 +31,7 @@ function agregarAlCarrito(index) {
   li.classList.add("carrito-item");
 
   const texto = document.createElement("span");
-  texto.textContent = `${producto.nombre} - $${producto.precio.toLocaleString()}`;
+  texto.textContent = `${producto.nombre} (${producto.proveedor}) - $${producto.precio.toLocaleString()}`;
 
   const btnEliminar = document.createElement("button");
   btnEliminar.textContent = "–";
@@ -48,6 +39,12 @@ function agregarAlCarrito(index) {
     listaCarrito.removeChild(li);
     total -= producto.precio;
     totalSpan.textContent = total.toLocaleString();
+
+    puntosPorProveedor[producto.proveedor] -= producto.puntos;
+    if (puntosPorProveedor[producto.proveedor] <= 0) {
+      delete puntosPorProveedor[producto.proveedor];
+    }
+    actualizarVistaPuntos();
   };
 
   li.appendChild(texto);
@@ -56,7 +53,24 @@ function agregarAlCarrito(index) {
 
   total += producto.precio;
   totalSpan.textContent = total.toLocaleString();
+
+  puntosPorProveedor[producto.proveedor] = (puntosPorProveedor[producto.proveedor] || 0) + producto.puntos;
+  actualizarVistaPuntos();
 }
+
+function actualizarVistaPuntos() {
+  puntosContainer.innerHTML = "<h4>Puntos por Proveedor:</h4>";
+  const ul = document.createElement("ul");
+  for (let prov in puntosPorProveedor) {
+    const li = document.createElement("li");
+    li.textContent = `${prov}: ${puntosPorProveedor[prov]} puntos`;
+    ul.appendChild(li);
+  }
+  puntosContainer.appendChild(ul);
+}
+
+// Insertamos los puntos debajo del total
+carritoContent.appendChild(puntosContainer);
 
 toggleBtn.addEventListener("click", () => {
   carritoContent.classList.toggle("oculto");
