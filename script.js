@@ -21,9 +21,9 @@ const listaCarrito = document.getElementById("lista-carrito");
 const totalSpan = document.getElementById("total");
 const toggleBtn = document.getElementById("toggle-carrito");
 const carritoContent = document.getElementById("carrito-content");
+const vaciarBtn = document.getElementById("vaciar-carrito");
 
 let carrito = [];
-let total = 0;
 
 // Mostrar productos
 function mostrarProductos() {
@@ -41,26 +41,38 @@ function mostrarProductos() {
 // Agregar producto al carrito
 function agregarAlCarrito(index) {
   const producto = productos[index];
-  carrito.push(producto);
+  const itemEnCarrito = carrito.find(item => item.nombre === producto.nombre && item.precio === producto.precio);
+
+  if (itemEnCarrito) {
+    itemEnCarrito.cantidad += 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+
   actualizarCarrito();
 }
 
 // Actualizar carrito
 function actualizarCarrito() {
   listaCarrito.innerHTML = '';
-  total = 0;
-  
+  let total = 0;
+
   carrito.forEach((producto, index) => {
     const li = document.createElement("li");
     li.classList.add("carrito-item");
 
     const texto = document.createElement("span");
-    texto.textContent = `${producto.nombre} - $${producto.precio.toLocaleString()}`;
+    const subtotal = producto.precio * producto.cantidad;
+    texto.textContent = `${producto.nombre} x${producto.cantidad} - $${subtotal.toLocaleString()}`;
 
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "–";
     btnEliminar.onclick = () => {
-      carrito.splice(index, 1);
+      if (producto.cantidad > 1) {
+        producto.cantidad -= 1;
+      } else {
+        carrito.splice(index, 1);
+      }
       actualizarCarrito();
     };
 
@@ -68,16 +80,24 @@ function actualizarCarrito() {
     li.appendChild(btnEliminar);
     listaCarrito.appendChild(li);
 
-    total += producto.precio;
+    total += subtotal;
   });
-  
+
   totalSpan.textContent = total.toLocaleString();
 }
 
-// Event listeners
+// Vaciar carrito
+function vaciarCarrito() {
+  carrito = [];
+  actualizarCarrito();
+}
+
+// Eventos
 toggleBtn.addEventListener("click", () => {
   carritoContent.classList.toggle("oculto");
 });
 
-// Inicializar
+vaciarBtn.addEventListener("click", vaciarCarrito);
+
+// Inicialización
 mostrarProductos();
