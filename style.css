@@ -121,11 +121,19 @@ button:hover {
   background-color: #c0392b;
 }
 
+/* ... (código anterior permanece igual) */
+
 .btn-vaciar {
   background-color: var(--danger-color);
   color: white;
   margin-top: 10px;
   width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.btn-vaciar:hover {
+  background-color: #c0392b;
 }
 
 .oculto {
@@ -133,11 +141,10 @@ button:hover {
 }
 
 .scrollable {
-  max-height: 400px;
+  max-height: 200px;
   overflow-y: auto;
-  margin: 15px 0;
-  padding-right: 10px;
 }
+
 
 .total-container {
   background-color: var(--light-color);
@@ -162,3 +169,4 @@ button:hover {
     width: 100%;
   }
 }
+
