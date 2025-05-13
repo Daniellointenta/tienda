@@ -12,23 +12,25 @@
     <header>
       <h1><i class="fas fa-book"></i> Tienda Escolar</h1>
     </header>
-    
+
     <main>
       <section id="productos-container">
         <h2><i class="fas fa-list"></i> Productos Disponibles</h2>
-        <ul id="lista-productos"></ul>
+        <ul id="lista-productos" class="productos-lista"></ul>
       </section>
 
       <aside id="carrito-container">
-        <button id="toggle-carrito" class="btn-carrito">
+        <button id="toggle-carrito" class="btn-carrito" aria-expanded="false">
           <i class="fas fa-shopping-cart"></i> Carrito (<span id="contador-carrito">0</span>)
         </button>
-        
+
         <div id="carrito-content" class="oculto">
           <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+          
           <div class="scrollable">
-            <ul id="lista-carrito"></ul>
+            <ul id="lista-carrito" class="carrito-lista"></ul>
           </div>
+          
           <div class="total-container">
             <h3>Total: $<span id="total">0</span></h3>
             <button id="vaciar-carrito" class="btn-vaciar">Vaciar Carrito</button>
@@ -38,6 +40,6 @@
     </main>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
